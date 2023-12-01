@@ -25,7 +25,7 @@ WINDOWS:
 Launch App
 (1) Open two terminals in Vscode, One type "cd server" For example: D:\repo\CSE-412-2023> cd server
 (2) Other type "cd client" D:\repo\CSE-412-2023> cd client
-(3) Type "npm install" in the client terminal
+(3) Type "npm install create-react-app -g" and "npm install" in the client terminal
 (4) Type "npm start" in the server terminal
 (5) Type "npm start" in the client terminal
 </pre>
