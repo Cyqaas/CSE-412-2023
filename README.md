@@ -9,7 +9,7 @@ Git: https://git-scm.com/downloads  (All default)
 PostgreSQL: https://www.postgresql.org/download/  (All default, Remeber the password you set for the super user "postgres")
 Node.js: https://nodejs.org/en
 
-!!! Clone Repository By Using Visual Studio Code !!!
+!!! Clone Repository In Visual Studio Code !!!
 
 Restore Database
 WINDOWS: 
