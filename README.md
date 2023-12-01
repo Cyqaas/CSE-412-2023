@@ -1,3 +1,4 @@
+<pre>
 # CSE-412-2023
 Group Project
 Required: Visual Studio Code, Git, PostgreSQL, Node.js
@@ -27,3 +28,4 @@ Launch App
 (3) Type "npm install" in the client terminal
 (4) Type "npm start" in the server terminal
 (5) Type "npm start" in the client terminal
+</pre>
