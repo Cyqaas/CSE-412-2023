@@ -1,0 +1,36 @@
+-- Create database
+CREATE DATABASE group5db;
+
+-- Create posts table
+CREATE TABLE posts (
+    pid SERIAL NOT NULL,
+    caption VARCHAR(100) NOT NULL,
+    image_path TEXT DEFAULT('images/empty.jpeg') NOT NULL,
+    post_date VARCHAR(32) NOT NULL,
+    PRIMARY KEY(pid)
+);
+
+-- CREATE comments table
+CREATE TABLE comments (
+    cid SERIAL NOT NULL,
+    pid INT NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    text VARCHAR(500) NOT NULL,
+    comment_date VARCHAR(32) NOT NULL,
+    PRIMARY KEY(cid),
+    FOREIGN KEY(pid) REFERENCES posts(pid)
+);
+
+
+-- INSERT values into the tables
+INSERT INTO posts(caption, post_date)
+VALUES ('Check out my new car!', '11/27/2023');
+
+INSERT INTO posts(caption, post_date)
+VALUES ('Used car selling', '11/28/2023');
+
+INSERT INTO comments(pid, name, text, comment_date)
+VALUES (1 ,'John', 'nice car!', '11/28/2023');
+
+INSERT INTO comments(pid, name, text, comment_date)
+VALUES (1, 'Adma', 'looks great!', '11/28/2023');
