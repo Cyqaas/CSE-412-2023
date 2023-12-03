@@ -38,7 +38,7 @@ function UpdatePost() {
         console.log(response);
       }
 
-      navigate(`/`);
+      navigate(`/Home`);
     };
     
   return (

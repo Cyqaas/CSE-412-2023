@@ -145,6 +145,80 @@ app.delete("/posts/:postid", async (req, res) => {
 })
 
 
+
+/* JESSE JIMENEZ'S API  */
+
+// Routes 
+
+/*
+    GET request to check if user has an account return true if so otherwise
+    return false. Use this for the login page.  
+*/  
+app.get("/login/:email/:password", async (req, res) => 
+{
+    try
+    {
+        // object to email and password 
+        const {email , password  }  = req.params;  
+        const login = await db.query(`SELECT * FROM person WHERE email = '${email}' AND password = '${password}' `);
+        console.log(email + " " + password);
+        // Check if we get result
+       
+        if(login.rowCount != 0 )
+        {
+            console.log("Login success"); 
+            res.json(true); 
+            return true; 
+        } 
+        else
+        {
+            console.log("Login not succesful");
+            res.json(false); 
+        }
+    }
+    catch(err)
+    {
+        console.log(err.message); 
+        res.json(false ); 
+
+    }
+    
+    return false; 
+}); 
+
+/*
+    POST request, create a new account and insert it into the database
+*/ 
+app.post("/signup",async (req, res)=> 
+{
+    try
+    {
+        // Get info 
+        const {email, password, name, date_of_birth } = req.body;
+        
+        console.log(date_of_birth); 
+     
+        const signUp = await db.query(`INSERT INTO person(uid, email, password , name , date_of_birth, biography, post_count, friend_count, profile_picture, visibility ) 
+        VALUES (DEFAULT,'${email}', '${password}', '${name}', '${date_of_birth}'  , DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)`);
+
+      
+        res.json(true); 
+        return true;
+    }
+    catch(err)
+    {
+        console.log(err.message);
+        res.json(false); 
+        return false; 
+    }
+    
+
+}); 
+
+// get a person 
+
+
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`server is up and listening on port ${port}`);

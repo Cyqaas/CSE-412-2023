@@ -4,7 +4,9 @@ import Home from './routers/Home';
 import PostDetailPage from './routers/PostDetailPage';
 import UpdatePage from './routers/UpdatePage';
 import { PostsContextProvider } from './context/PostsContext';
-
+import InputLogin from './routers/login';
+import SignUp from './routers/signup';
+import DefaultPage from './routers/default';
 
 const App = () => {
     return(
@@ -12,9 +14,12 @@ const App = () => {
             <div className="container">
         <Router>
             <Routes>
-                <Route path ="/" element = {<Home/>}/>
+            <Route path ="/" element = {<InputLogin/>}/>
                 <Route path ="/posts/:id/update" element = {<UpdatePage/>}/>
                 <Route path ="/posts/:id" element = {<PostDetailPage/>}/>
+                <Route path ="/home" element = {<Home/>} />
+                <Route path ="/signup" element = {<SignUp/>}/>
+                <Route path ="/default" element = {<DefaultPage/>}/>
             </Routes>
         </Router>
     </div>

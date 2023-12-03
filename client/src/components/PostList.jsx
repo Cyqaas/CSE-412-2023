@@ -21,7 +21,8 @@ function PostList() {
         e.stopPropagation();
         try {
             const response = await PostFinder.delete(`/${pid}`);
-            console.log(response);
+            console.log(response );
+
             setPosts(posts.filter(post => {
                 return post.pid !== pid;
             }));
@@ -34,7 +35,7 @@ function PostList() {
     };
 
     const handlePostSelect = (e, pid) => {
-        navigate(`posts/${pid}`);
+        navigate(`/posts/${pid}`);
     };
 
   return (
