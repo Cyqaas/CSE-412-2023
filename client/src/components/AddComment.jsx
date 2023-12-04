@@ -34,7 +34,19 @@ function AddComment() {
                     <textarea value={comment} onChange={e => setComment(e.target.value)} id="comment" className="form-control"></textarea>
                 </div>
                 <div className="col-12">
-                    <button onClick={handleSubmit} type="submit" className="btn btn-primary">Submit</button>
+                    <button onClick={handleSubmit} type="submit" className="btn btn-primary"
+                    style={{
+                        background: 'linear-gradient(to right, #cba0fa, #9a47ff)',
+                        color: 'white',
+                        borderRadius: '5px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: '16px',
+                        width: '100px',
+                        height: '45px',
+                      }}
+                    >
+                    Submit</button>
                 </div>
             </div>
         </form>

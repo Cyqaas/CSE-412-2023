@@ -57,8 +57,36 @@ function PostList() {
                             <td>{post.caption}</td>
                             <td>{post.post_date}</td>
                             <td>{post.count || 0}</td>
-                            <td><button onClick={(e) => handleUpdate(e, post.pid)} className="btn btn-warning">Update</button></td>
-                            <td><button onClick={(e) => handleDelete(e, post.pid)} className="btn btn-danger">Delete</button></td>
+                            <td><button onClick={(e) => handleUpdate(e, post.pid)} className="btn btn-warning"
+                            style = {{
+                                background: 'linear-gradient(to right, #FFA07A, #FF6347)',
+                                color: 'white',
+                                borderRadius: '5px',
+                                border: 'none',
+                                cursor: 'pointer',
+                                fontSize: '16px',
+                                width: '100px',
+                                height: '45px',
+                            }}
+                            >
+                            Update
+                            </button>
+                            </td>
+                            <td><button onClick={(e) => handleDelete(e, post.pid)} className="btn btn-danger"
+                            style={{
+                                background: 'linear-gradient(to right, #cba0fa, #9a47ff)',
+                                color: 'white',
+                                borderRadius: '5px',
+                                border: 'none',
+                                cursor: 'pointer',
+                                fontSize: '16px',
+                                width: '100px',
+                                height: '45px',
+                              }}
+                            >
+                            Delete
+                            </button>
+                            </td>
                         </tr>
                     );
                 })}

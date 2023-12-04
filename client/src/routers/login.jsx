@@ -78,7 +78,7 @@ function InputLogin  ()
             </div>
                 
                 <div className='form-floating'>
-                <label className='form-label' form='passform'  style={{fontSize:'9px'}}> Password </label>
+                <label className='form-label' form='passform' style={{fontSize:'9px'}}> Password </label>
                 <input 
                 type ="password" 
                 id='passform' 
@@ -118,7 +118,7 @@ function InputLogin  ()
                  className = 'btn btn-success mt-5' 
                  type='success'
                  style={{
-                    background: 'linear-gradient(to right, #FFA07A, #FF6347)',
+                    background: 'linear-gradient(to right, #cba0fa, #9a47ff)',
                     color: 'white',
                     padding: '10px 20px',
                     borderRadius: '5px',

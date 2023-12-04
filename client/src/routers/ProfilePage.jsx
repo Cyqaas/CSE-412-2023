@@ -158,9 +158,24 @@ const ProfilePage = () => {
                                 <a class="nav-link" href="javascript:void(0)">Marketplace</a>
                                 </li>
                             </ul>
-                            <form class="d-flex">
-                                <input class="form-control me-2" type="text" placeholder="Search"/>
-                                <button class="btn btn-primary" type="button">Search</button>
+                            <form class="d-flex text-center ">
+                                <input class="form-control me-4" type="text" placeholder="Search"/>
+                                <div>
+                                <button class="btn btn-primary" type="button"
+                                style = {{
+                                    background: 'linear-gradient(to right,  #a0d7fa, #474dff)',
+                                    color: 'white',
+                                    borderRadius: '5px',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    fontWeight: 'bold',
+                                    fontSize: '16px',
+                                    marginRight: '130px',
+                                    width: '100px',
+                                    }}
+                                >
+                                    Search</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -205,7 +220,24 @@ const ProfilePage = () => {
                                     </li>
                                 </ul>
                                 <form class="d-flex">
-                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editNameModal">Edit Name</button>
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editNameModal"
+                                    style = {{
+                                    background: 'linear-gradient(to right,  #cba0fa, #9a47ff)',
+                                    color: 'white',
+                                    padding: '10px 20px',
+                                    borderRadius: '5px',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    fontWeight: 'bold',
+                                    fontSize: '16px',
+                                    marginRight: '20px',
+                                    marginBottom: '10px',
+                                    width: '120px',
+                                    height: '45px',
+                                    }}
+                                    >
+                                    Edit Name
+                                    </button>
                                 </form>
                             </div>
                         </nav>
@@ -220,29 +252,68 @@ const ProfilePage = () => {
                 <div class="container bg-light bg-gradient mt-5" style={{top:"50%", left:"50%", transform: "translate(0%, -50%)", position:"left"}}>
                     <label id="ProfileIntro" class="fw-bold fs-4">Intro</label>
                     <br/>
-                    <div class="text-center">
-                        <label id="ProfileBiography" class="text-center">{userInformation.biography}</label>
-                        <br/>
-                        <button type="button" class="btn btn-secondary btn-sm d-grid gap-2 col-6 mx-auto mt-2" data-bs-toggle="modal" data-bs-target="#editBioModal">Edit Bio</button>
-                        <br/>
-                    </div>
+                    <br/>
+
+                    <label id="ProfileBiography" class="text-center"  
+                    style={{ fontSize: '19px', color: 'blue'}}>{userInformation.biography}</label>
+                    <br/>
+                    <br/>
+                    <br/>
+
                     <div class="text-left">
                         <img src="images/mail.jpg" style={{width:"3%"}} class="rounded"/>
                         <label id="ProfileEmail">&nbsp;{userInformation.email}</label>
-                        <br/>
+                    <br/>
                         <img src="images/dob.png" style={{width:"3%"}} class="rounded"/>
                         <label id="ProfileDOB" class="mt-3">&nbsp;{userInformation.date_of_birth}</label>
-                        <br/>
+                    <br/>
                         <img src="images/visibility.jpg" style={{width:"3%"}} class="rounded"/>
                         <label id="ProfileVisibilty" class="mt-3">&nbsp;{visibility}</label>
-                        <br/>
+                    <br/>
                         <img src="images/post.png" style={{width:"3%"}} class="rounded"/>
                         <label id="ProfilePostCount" class="mt-3">&nbsp;{userInformation.post_count} posts</label>
                     </div>
-                    <div class="text-center">
-                        <br/>
-                        <button type="button" class="btn btn-secondary btn-sm d-grid gap-2 col-6 mx-auto mt-2" data-bs-toggle="modal" data-bs-target="#editDetailModal">Edit Details</button>
-                        <br/>
+
+                    <div style = {{ display: 'flex', justifyContent: 'center'}}>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editBioModal"
+                        style = {{
+                            background: 'linear-gradient(to right, #FFA07A, #FF6347)',
+                            color: 'white',
+                            padding: '10px 20px',
+                            borderRadius: '5px',
+                            border: 'none',
+                            cursor: 'pointer',
+                            fontWeight: 'bold',
+                            fontSize: '16px',
+                            marginLeft: '90px',
+                            marginBottom: '20px',
+                            width: '190px',
+                            height: '45px',
+                        }}
+                        >
+                        Edit Bio
+                        </button>
+
+                    {/* <div class="text-center"> */}
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editDetailModal"
+                        style = {{
+                            background: 'linear-gradient(to right, #FFA07A, #FF6347)',
+                            color: 'white',
+                            padding: '10px 20px',
+                            borderRadius: '5px',
+                            border: 'none',
+                            cursor: 'pointer',
+                            fontWeight: 'bold',
+                            fontSize: '16px',
+                            marginLeft: '80px',
+                            marginBottom: '20px',
+                            width: '190px',
+                            height: '45px',
+                            }}
+                        >
+                        Edit Details
+                        </button>
+                    {/* </div> */}
                     </div>
                 </div>
             </Fragment>
@@ -256,13 +327,46 @@ const ProfilePage = () => {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Please insert a new name</p>
+                            <p>Please insert a New Name</p>
                             <label for="users-name" class="form-label">Your new name: </label>
                             <input type="text" class="form-control" id="modal-name" placeholder="e.g. Anonymous" onChange={e => setName(e.target.value)}/>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" id="closeNameBtn">Close</button>
-                            <button type="button" class="btn btn-primary" onClick={e => updateName(e)}>Save changes</button>
+                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" id="closeNameBtn"
+                            style = {{
+                                background: 'linear-gradient(to right, #FFA07A, #FF6347)',
+                                color: 'white',
+                                padding: '10px 20px',
+                                borderRadius: '5px',
+                                border: 'none',
+                                cursor: 'pointer',
+                                fontWeight: 'bold',
+                                fontSize: '16px',
+                                marginRight: '30px',
+                                width: '145px',
+                                height: '45px',
+                                }}
+                            >
+                            Close
+                            </button>
+                            
+                            <button type="button" class="btn btn-primary" onClick={e => updateName(e)}
+                            style = {{
+                                background: 'linear-gradient(to right, #cba0fa, #9a47ff)',
+                                color: 'white',
+                                padding: '10px 20px',
+                                borderRadius: '5px',
+                                border: 'none',
+                                cursor: 'pointer',
+                                fontWeight: 'bold',
+                                fontSize: '16px',
+                                marginRight: '5px',
+                                width: '145px',
+                                height: '45px',
+                                }}
+                            >
+                            Save changes
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -277,13 +381,45 @@ const ProfilePage = () => {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Please insert a new bio</p>
+                            <p>Please insert a New Bio</p>
                             <label for="users-name" class="form-label">Your new bio: </label>
                             <input type="text" class="form-control" id="modal-name" placeholder="e.g. Just a guy trying to get by." onChange={e => setBio(e.target.value)}/>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" id="closeNameBtn">Close</button>
-                            <button type="button" class="btn btn-primary" onClick={e => updateBio(e)}>Save changes</button>
+                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" id="closeNameBtn"
+                            style = {{
+                                background: 'linear-gradient(to right, #FFA07A, #FF6347)',
+                                color: 'white',
+                                padding: '10px 20px',
+                                borderRadius: '5px',
+                                border: 'none',
+                                cursor: 'pointer',
+                                fontWeight: 'bold',
+                                fontSize: '16px',
+                                marginRight: '30px',
+                                width: '145px',
+                                height: '45px',
+                                }}
+                            >
+                            Close
+                            </button>
+                            <button type="button" class="btn btn-primary" onClick={e => updateBio(e)}
+                            style = {{
+                                background: 'linear-gradient(to right, #cba0fa, #9a47ff)',
+                                color: 'white',
+                                padding: '10px 20px',
+                                borderRadius: '5px',
+                                border: 'none',
+                                cursor: 'pointer',
+                                fontWeight: 'bold',
+                                fontSize: '16px',
+                                marginRight: '5px',
+                                width: '145px',
+                                height: '45px',
+                                }}
+                            >
+                            Save changes
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -302,15 +438,64 @@ const ProfilePage = () => {
                             <label for="users-email" class="form-label fw-bold">Email</label>
                             <input type="text" class="form-control" id="modal-email" placeholder="e.g. Update email" onChange={e => setUpdateEmail(e.target.value)}/>
                             <br/>
-                            <button type="button" class="btn btn-primary" onClick={e => updateEmail(e)}>Save changes</button>
+                            <button type="button" class="btn btn-primary" onClick={e => updateEmail(e)}
+                            style = {{
+                                background: 'linear-gradient(to right, #cba0fa, #9a47ff)',
+                                color: 'white',
+                                padding: '10px 20px',
+                                borderRadius: '5px',
+                                border: 'none',
+                                cursor: 'pointer',
+                                fontWeight: 'bold',
+                                fontSize: '16px',
+                                marginRight: '5px',
+                                width: '145px',
+                                height: '45px',
+                                }}
+                            >
+                            Save changes
+                            </button>
+
                             <br/><br/>
                             <label for="users-visibility" class="form-label fw-bold">Visibility</label>
                             <input type="text" class="form-control" id="modal-visibility" placeholder="e.g. Private/Public" onChange={e => setUpdateVisibility(e.target.value)}/>
                             <br/>
-                            <button type="button" class="btn btn-primary" onClick={e => updateVisibility(e)}>Save changes</button>
+                            <button type="button" class="btn btn-primary" onClick={e => updateVisibility(e)}
+                            style = {{
+                                background: 'linear-gradient(to right, #cba0fa, #9a47ff)',
+                                color: 'white',
+                                padding: '10px 20px',
+                                borderRadius: '5px',
+                                border: 'none',
+                                cursor: 'pointer',
+                                fontWeight: 'bold',
+                                fontSize: '16px',
+                                marginRight: '5px',
+                                width: '145px',
+                                height: '45px',
+                                }}
+                            >
+                            Save changes
+                            </button>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" id="closeNameBtn">Close</button>
+                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" id="closeNameBtn"
+                            style = {{
+                                background: 'linear-gradient(to right, #FFA07A, #FF6347)',
+                                color: 'white',
+                                padding: '10px 20px',
+                                borderRadius: '5px',
+                                border: 'none',
+                                cursor: 'pointer',
+                                fontWeight: 'bold',
+                                fontSize: '16px',
+                                marginRight: '5px',
+                                width: '145px',
+                                height: '45px',
+                                }}
+                            >
+                            Close
+                            </button>
                         </div>
                     </div>
                 </div>

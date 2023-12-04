@@ -37,7 +37,20 @@ function AddPost() {
                         <input onChange={e => setFile(e.target.files[0])} type="file" className="form-control"/>
                     </div>
                     <div className="col-auto">
-                        <button onClick={handleSubmit} type="submit" className="btn btn-primary">Post</button>
+                        <button onClick={handleSubmit} type="submit" className="btn btn-primary"
+                        style = {{
+                            background: 'linear-gradient(to right, #a0d7fa, #474dff)',
+                            color: 'white',
+                            borderRadius: '5px',
+                            border: 'none',
+                            cursor: 'pointer',
+                            fontSize: '16px',
+                            width: '100px',
+                            height: '45px',
+                        }}
+                        >
+                        Post
+                        </button>
                     </div>
                 </div>
             </div>
