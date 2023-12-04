@@ -59,7 +59,7 @@ import React, {useEffect, useState} from 'react';
         }
         catch(err)
         {
-            console.log("error");
+            console.log("sign up error", err);
             return false; 
         } 
 

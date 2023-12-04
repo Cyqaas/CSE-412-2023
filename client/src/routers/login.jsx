@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'; 
 import { useNavigate } from "react-router-dom";
+import './styles.css';
 /*
     Hold componets and buttons/modulas to login into their account 
     Textbox for username and password, button to call event
@@ -8,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 // Get the cookie
 function getCookie(cname)
 {
-    let name = cname + "=";
+  let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(';');
   for(let i = 0; i <ca.length; i++) {
@@ -52,46 +53,89 @@ function InputLogin  ()
                 document.cookie = `password=${passwordInput}`; 
                 navigate('/ProfilePage'); 
             }
-
         }
         catch(err)
         {
-            console.log("error");
+            console.log("log in error", err);
         } 
     }
 
      return (
         <>
-               
-             <h1 className='text-center mt-5'> Login Page </h1>
-             <center> 
-            <form className='text-center mt-5 w-25'
-            > 
-            <div className='form-floating mb-1'>
-                
-            <label className='form-label' form='emailform' style={{fontSize:'9px'}} > Email </label>
-                <input type='text' id='emailform' className='form-control ' placeholder='Email@example.com' value={emailInput} onChange={(e) => setEmailInput(e.target.value)}></input>
-            </div>
-                <div className='form-floating'>
-                <label className='form-label' form='passform'  style={{fontSize:'9px'}}> password </label>
-                <input type ="password" id='passform' className='form-control mt-5'   placeholder= '●●●●●●●' value={passwordInput} onChange={  (e) => setPasswordInput(e.target.value)}></input>
-                </div>
-                
-                <center>
-                <button className='btn btn-success mt-5' onClick ={onLoginIn} type='success'>Sign In</button>
-
-                </center> 
-               
-            </form> 
-           
-           </center>
-           
+            <h1 className='text-center mt-5'> Login Page </h1>
             <center>
-                 <button onClick={() =>{navigate('/signup')}}className= 'btn btn-success mt-5' type='success'>Sign Up </button>
-            </center>
+            <form className='text-center mt-5 w-25'>
+
+            <div className='form-floating mb-1'>
+            <label className='form-label' form='emailform' style={{fontSize:'9px'}} > Email </label>
+                <input 
+                type='text' 
+                id='emailform' 
+                className='form-control' 
+                placeholder='Email@example.com' 
+                value={emailInput} onChange={(e) => setEmailInput(e.target.value)}>
+                </input>
+            </div>
+                
+                <div className='form-floating'>
+                <label className='form-label' form='passform'  style={{fontSize:'9px'}}> Password </label>
+                <input 
+                type ="password" 
+                id='passform' 
+                className='form-control mt-5' 
+                placeholder= '●●●●●●●' 
+                value={passwordInput} 
+                onChange={  (e) => setPasswordInput(e.target.value)}>
+                </input>
+                </div>
+                </form> 
+           </center>
+
+                <div style = {{ display: 'flex', justifyContent: 'center'}}>
+                    <button 
+                    className='btn btn-success mt-5' 
+                    onClick ={onLoginIn} 
+                    type='success'
+                    style = {{
+                        background: 'linear-gradient(to right, #FFA07A, #FF6347)',
+                        color: 'white',
+                        padding: '10px 20px',
+                        borderRadius: '5px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontWeight: 'bold',
+                        fontSize: '16px',
+                        marginRight: '30px',
+                        width: '120px',
+                        height: '45px',
+                    }}
+                    >
+                    Sign In 
+                    </button>
+
+                 <button 
+                 onClick={() =>{navigate('/signup')}} 
+                 className = 'btn btn-success mt-5' 
+                 type='success'
+                 style={{
+                    background: 'linear-gradient(to right, #FFA07A, #FF6347)',
+                    color: 'white',
+                    padding: '10px 20px',
+                    borderRadius: '5px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontWeight: 'bold',
+                    fontSize: '16px',
+                    marginLeft: '30px',
+                    width: '120px',
+                    height: '45px',
+                  }}
+                 > 
+                 Sign Up 
+                 </button>
+            </div>
         </>
     ); 
-
 }
 
 export  default InputLogin; 
