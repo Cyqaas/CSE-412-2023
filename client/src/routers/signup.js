@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
  import { BrowserRouter } from "react-router-dom";
  import { useNavigate } from "react-router-dom";
 
-
  function SignUp ()
 {
     // Get email
@@ -13,11 +12,6 @@ import React, {useEffect, useState} from 'react';
   
     let navigate = useNavigate(); 
 
-
-
-
-
-    
     // Now call api to insert 
     const onSignUp = async (e) =>
     {   
@@ -27,16 +21,13 @@ import React, {useEffect, useState} from 'react';
                 return false; 
             } 
 
-        
         try
         {  
-           
             const bodyInput ={
                 "email": emailInput,
                 "password" :passwordInput,
                 "name" : nameInput,
-                "date_of_birth" : dateInput
-                
+                "date_of_birth" : dateInput 
             }
 
             console.log(dateInput);
@@ -45,15 +36,15 @@ import React, {useEffect, useState} from 'react';
                 method: "POST",
                 headers: {"Content-Type": "application/json"}, 
                 body: JSON.stringify(bodyInput)
-                
             }); 
+
             const data = await response.json(); 
             console.log("Error:" +data);
             if (data)
             { 
                 document.cookie =`email=${emailInput}`; 
                 document.cookie = `password=${passwordInput}`; 
-            navigate('/');
+                navigate('/');
             }
             return true; 
         }
@@ -62,7 +53,6 @@ import React, {useEffect, useState} from 'react';
             console.log("sign up error", err);
             return false; 
         } 
-
     }
 
     
@@ -91,7 +81,7 @@ import React, {useEffect, useState} from 'react';
             > 
             <div className='form-floating mb-1'>
                 
-            <label className='form-label' form='name' style={{fontSize:'9px'}} > name </label>
+            <label className='form-label' form='name' style={{fontSize:'9px'}} > Name </label>
                 <input type='text' id='nameform' className='form-control ' placeholder='Bob' value={nameInput} onChange={(e) => setNameInput(e.target.value)}></input>
             </div>
         </form>
@@ -100,7 +90,7 @@ import React, {useEffect, useState} from 'react';
             > 
             <div className='form-floating mb-1'>
                 
-            <label className='form-label' form='name' style={{fontSize:'9px'}} > create password </label>
+            <label className='form-label' form='name' style={{fontSize:'9px'}} > Create Password </label>
                 <input type='password' id='nameform' className='form-control ' placeholder='Bob' value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)}></input>
             </div>
         </form>
@@ -108,11 +98,28 @@ import React, {useEffect, useState} from 'react';
         <form className='text-center mt-5 w-25'> 
             <div className='form-floating mb-1' >
                 
-            <label className='form-label' form='name' style={{fontSize:'9px'}} > Date of Birth ex: month/day/year</label>
+            <label className='form-label' form='name' style={{fontSize:'9px'}}> Date of Birth </label>
                 <input type='date' id='nameform' className='form-control ' placeholder='00/00/0000' value={dateInput} onChange={(e) => setDateInput(e.target.value)} ></input>
             </div> 
              <center>
-                 <button className= 'btn btn-success mt-5' type='success' onClick={onSignUp} >Create account </button>
+                 <button className= 'btn btn-success mt-5' 
+                 type='success' 
+                 onClick={onSignUp} 
+                 style = {{
+                    background: 'linear-gradient(to right, #FFA07A, #FF6347)',
+                    color: 'white',
+                    padding: '10px 20px',
+                    borderRadius: '5px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontWeight: 'bold',
+                    fontSize: '16px',
+                    width: '186px',
+                    height: '45px',
+                }}
+                > 
+                 Create account 
+                 </button>
             </center>
         </form>
         </center>

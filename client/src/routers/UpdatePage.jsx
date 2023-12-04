@@ -4,7 +4,7 @@ import UpdatePost from '../components/UpdatePost';
 const UpdatePage = () => {
   return (
     <div>
-      <h1 className="text-center">Update Post</h1>
+      <h1 className="text-center"> Update Post </h1>
       <UpdatePost/>
     </div>
   )
