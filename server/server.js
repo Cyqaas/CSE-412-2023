@@ -186,6 +186,97 @@ app.get("/login/:email/:password", async (req, res) =>
     return false; 
 }); 
 
+/* 
+    GET request to get the user information from the database for the profile page
+*/
+app.get("/profileGetInfo/:email/:password", async(req, res) => 
+{
+    try 
+    {
+        //email and password objects 
+        const {email, password} = req.params; 
+        const profileInfo = await db.query(`SELECT * FROM person WHERE email = '${email}' AND password = '${password}' `);
+        res.json(profileInfo.rows[0]);
+
+    }
+    catch (err) 
+    {
+        console.error(err.message);
+    }
+});
+
+/* 
+    PUT request to change the users name
+*/
+app.put("/profileEditName/:email/:password", async(req, res) => 
+{
+    try 
+    {
+        const {email, password} = req.params;
+        const {name} = req.body;
+        const updateName = await db.query(`UPDATE person SET name = '${name}' WHERE email = '${email}' AND password = '${password}' `);
+        res.json("Name was updated!");
+    }
+    catch (err) 
+    {
+        console.error(err.message);
+    }
+});
+
+/* 
+    PUT  request to change the users bio
+*/
+app.put("/profileEditBiography/:email/:password", async(req, res) => 
+{
+    try 
+    {
+        const {email, password} = req.params;
+        const {bio} = req.body;
+        const updateName = await db.query(`UPDATE person SET biography = '${bio}' WHERE email = '${email}' AND password = '${password}' `);
+        res.json("Biography was updated!");
+    }
+    catch (err) 
+    {
+        console.error(err.message);
+    }
+});
+
+/* 
+    PUT  request to change the users details
+*/
+app.put("/profileEditEmail/:uid", async(req, res) => 
+{
+    try 
+    {
+        const {uid} = req.params;
+        const {newEmail} = req.body;
+        const updateEmail = await db.query(`UPDATE person SET email = '${newEmail}' WHERE uid = ${uid} `);
+        res.json("Email was updated!");
+    }
+    catch (err) 
+    {
+        console.error(err.message);
+    }
+});
+
+/* 
+    PUT  request to change the users details
+*/
+app.put("/profileEditVisibility/:uid", async(req, res) => 
+{
+    try 
+    {
+        const {uid} = req.params;
+        const {visibility} = req.body;
+        const updateVisibility = await db.query(`UPDATE person SET visibility = ${visibility} WHERE uid = ${uid} `);
+        res.json(updateVisibility);
+    }
+    catch (err) 
+    {
+        console.error(err.message);
+    }
+});
+
 /*
     POST request, create a new account and insert it into the database
 */ 

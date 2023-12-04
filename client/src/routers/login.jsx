@@ -50,7 +50,7 @@ function InputLogin  ()
                 // set cookie 
                 document.cookie =`email=${emailInput}`; 
                 document.cookie = `password=${passwordInput}`; 
-                navigate('/Home'); 
+                navigate('/ProfilePage'); 
             }
 
         }

@@ -7,6 +7,7 @@ import { PostsContextProvider } from './context/PostsContext';
 import InputLogin from './routers/login';
 import SignUp from './routers/signup';
 import DefaultPage from './routers/default';
+import ProfilePage from './routers/ProfilePage';
 
 const App = () => {
     return(
@@ -19,6 +20,7 @@ const App = () => {
                 <Route path ="/posts/:id" element = {<PostDetailPage/>}/>
                 <Route path ="/home" element = {<Home/>} />
                 <Route path ="/signup" element = {<SignUp/>}/>
+                <Route path ="/profilepage" element = {<ProfilePage/>}/>
                 <Route path ="/default" element = {<DefaultPage/>}/>
             </Routes>
         </Router>
