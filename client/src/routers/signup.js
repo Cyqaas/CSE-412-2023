@@ -44,6 +44,8 @@ import React, {useEffect, useState} from 'react';
             { 
                 document.cookie =`email=${emailInput}`; 
                 document.cookie = `password=${passwordInput}`; 
+                const response = await fetch(`http://localhost:3001/loginUid/${emailInput}/${passwordInput}`); 
+                document.cookie =`uid=${response}`; 
                 navigate('/');
             }
             return true; 
