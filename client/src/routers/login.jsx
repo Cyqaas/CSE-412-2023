@@ -8,7 +8,6 @@ import getCookie from './cookieHelper';
 */
 
 
-
 function InputLogin  () 
 {
     const [emailInput, setEmailInput] = useState(''); // an array
