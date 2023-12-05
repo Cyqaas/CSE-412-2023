@@ -23,9 +23,11 @@ const ProfilePage = () => {
             let Optionvalue = null; 
             if (updatedVisibility==='Public') {
                 Optionvalue = true; 
+                setVisibility("Public");
             }
             else if (updatedVisibility==='Private') {
                 Optionvalue = false; 
+                setVisibility("Private");
                 
             }
             setOption(Optionvalue); 
@@ -145,7 +147,7 @@ const ProfilePage = () => {
         setUserUID(getCookie('uid'));
         console.log(userUID);
         
-    },[email==""&&password=="", name != "", bio != "", updatedVisibility != ""]);
+    },[email==""&&password=="", name != "", bio != "", updatedVisibility != "", visibility]);
 
     return (
         <body>
