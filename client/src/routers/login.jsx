@@ -1,28 +1,13 @@
 import React, {useEffect, useState} from 'react'; 
 import { useNavigate } from "react-router-dom";
 import './styles.css';
+import getCookie from './cookieHelper';
 /*
     Hold componets and buttons/modulas to login into their account 
     Textbox for username and password, button to call event
 */
 
-// Get the cookie
-function getCookie(cname)
-{
-  let name = cname + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
+
 
 function InputLogin  () 
 {
@@ -51,6 +36,10 @@ function InputLogin  ()
                 // set cookie 
                 document.cookie =`email=${emailInput}`; 
                 document.cookie = `password=${passwordInput}`; 
+                // get uid pass it to cookie
+                const response = await fetch(`http://localhost:3001/loginUid/${emailInput}/${passwordInput}`); 
+                const  uidRes = await response.json();  
+                document.cookie =`uid=${uidRes.uid}`; 
                 navigate('/ProfilePage'); 
             }
         }

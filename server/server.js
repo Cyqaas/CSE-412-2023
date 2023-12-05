@@ -5,6 +5,7 @@ const multer = require('multer');
 const path = require('path');
 const db = require("./db");
 const morgan = require("morgan");
+const { log } = require("console");
 
 const app = express();
 
@@ -186,6 +187,40 @@ app.get("/login/:email/:password", async (req, res) =>
     return false; 
 }); 
 
+// Get a uid of the user after succesful login/sign up
+app.get("/loginUid/:email/:password", async (req, res) => 
+{
+    try
+    {
+        // object to email and password 
+        const {email , password  }  = req.params;  
+        console.log(email + " " + password);
+        const login = await db.query(`SELECT uid FROM person WHERE email = '${email}' AND password = '${password}' `);
+        console.log(email + " " + password);
+        // Check if we get result
+        let uid = login.rows[0].uid; 
+        if(login.rowCount !== 0)
+        {
+            console.log("Login success got uid" + uid); 
+            res.json({uid:uid}); 
+            return {uid:uid}; 
+        } 
+        else
+        {
+            console.log("Login not succesful");
+            res.json({uid:null}); 
+        }
+    }
+    catch(err)
+    {
+        console.log(err.message); 
+        res.json({uid:null}); 
+
+    }
+    
+    return {uid:null}; 
+}); 
+
 /* 
     GET request to get the user information from the database for the profile page
 */
@@ -197,7 +232,7 @@ app.get("/profileGetInfo/:email/:password", async(req, res) =>
         const {email, password} = req.params; 
         const profileInfo = await db.query(`SELECT * FROM person WHERE email = '${email}' AND password = '${password}' `);
         res.json(profileInfo.rows[0]);
-
+        console.log("visibility", profileInfo.rows[0].visibility);
     }
     catch (err) 
     {
@@ -249,13 +284,18 @@ app.put("/profileEditEmail/:uid", async(req, res) =>
     try 
     {
         const {uid} = req.params;
-        const {newEmail} = req.body;
-        const updateEmail = await db.query(`UPDATE person SET email = '${newEmail}' WHERE uid = ${uid} `);
-        res.json("Email was updated!");
+        console.log(uid); 
+        const {email} = req.body;
+        console.log(email); 
+        const updateEmail = await db.query(`UPDATE person SET email = '${email}' WHERE uid = ${uid} `);
+        res.json(true);
+        return true; 
     }
     catch (err) 
     {
         console.error(err.message);
+        res.json(false);
+        return false; 
     }
 });
 
@@ -267,8 +307,20 @@ app.put("/profileEditVisibility/:uid", async(req, res) =>
     try 
     {
         const {uid} = req.params;
-        const {visibility} = req.body;
-        const updateVisibility = await db.query(`UPDATE person SET visibility = ${visibility} WHERE uid = ${uid} `);
+        const {option} = req.body;
+        let vs = null; 
+        console.log("option:" + option);
+        if(option === true)
+        {
+            vs = 'true';
+        }
+        else
+        {
+            vs = 'false'; 
+        }
+
+        console.log(vs); 
+        const updateVisibility = await db.query(`UPDATE person SET visibility = $1 WHERE uid = ${uid} `,[vs]);
         res.json(updateVisibility);
     }
     catch (err) 

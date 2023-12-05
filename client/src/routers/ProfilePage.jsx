@@ -20,20 +20,25 @@ const ProfilePage = () => {
         e.preventDefault();
         try {
             console.log(updatedVisibility);
-            
-            if (updatedVisibility=="Public") {
-                setOption(true);
+            let Optionvalue = null; 
+            if (updatedVisibility==='Public') {
+                Optionvalue = true; 
             }
-            else if (updatedVisibility=="Private") {
-                setOption(false);
+            else if (updatedVisibility==='Private') {
+                Optionvalue = false; 
+                
             }
-            
+            setOption(Optionvalue); 
+            const bodyInput = 
+            {
+                "option" : Optionvalue
+            }
+
             console.log(option);
-            const body = { option };
             const response = await fetch(`http://localhost:3001/profileEditVisibility/${userUID}`,{
                 method: "PUT",
                 headers: {"Content-Type" : "application/json"},
-                body: JSON.stringify(body)
+                body: JSON.stringify(bodyInput)
             });
             console.log(response);
             window.location = "/ProfilePage";
@@ -48,15 +53,24 @@ const ProfilePage = () => {
     const updateEmail = async e => {
         e.preventDefault();
         try {
-            const body = { updatedEmail };       
+
+            const bodyInput = 
+            {
+                "email" : updatedEmail
+            }
+     
             console.log(userUID);
             const response = await fetch(`http://localhost:3001/profileEditEmail/${userUID}`,{
                 method: "PUT",
                 headers: {"Content-Type" : "application/json"},
-                body: JSON.stringify(body)
+                body: JSON.stringify(bodyInput)
             });
-            console.log(response);
-            window.location = "/";
+            if(response)
+            {
+                document.cookie = `email=${updatedEmail}`;
+                console.log(response);
+                window.location = "/";
+            }
         }
         catch (err) {
             console.error(err.message);
@@ -108,12 +122,14 @@ const ProfilePage = () => {
             setUserInformation(jsonData);
 
             const test = userInformation.visibility;
-            if (test) {
+            if (test) 
+            {
                 setVisibility("Public");
             } 
             else {
                 setVisibility("Private");
             }
+
             console.log("visibility", visibility)
             console.log("userInformation", userInformation);
         }
@@ -126,7 +142,7 @@ const ProfilePage = () => {
         setEmail(getCookie('email')); 
         setPassword(getCookie('password'));
         getProfileDetails();
-        setUserUID(userInformation.uid);
+        setUserUID(getCookie('uid'));
         console.log(userUID);
         
     },[email==""&&password=="", name != "", bio != "", updatedVisibility != ""]);
